@@ -654,14 +654,14 @@ Example `application.properties` configuration:
 ```properties
 spring.application.name=order-inventory-management-api
 
-server.port=8080
+server.port=${SERVER_PORT:8080}
 
-spring.datasource.url=jdbc:postgresql://localhost:5432/order_inventory_db
-spring.datasource.username=postgres
-spring.datasource.password=your_postgresql_password
+spring.datasource.url=${DB_URL:jdbc:postgresql://localhost:5432/order_inventory_db}
+spring.datasource.username=${DB_USERNAME:postgres}
+spring.datasource.password=${DB_PASSWORD:postgres123}
 
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=${DDL_AUTO:update}
+spring.jpa.show-sql=${SHOW_SQL:true}
 spring.jpa.properties.hibernate.format_sql=true
 spring.jpa.open-in-view=false
 
@@ -676,7 +676,7 @@ springdoc.api-docs.path=/v3/api-docs
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/order-inventory-management-api.git
+git clone https://github.com/serhatserce/order-inventory-management-api.git
 cd order-inventory-management-api
 ```
 
@@ -711,11 +711,30 @@ Open:
 src/main/resources/application.properties
 ```
 
-Update your PostgreSQL password:
+The project uses environment variables with default local values:
 
 ```properties
-spring.datasource.username=postgres
-spring.datasource.password=your_postgresql_password
+spring.datasource.url=${DB_URL:jdbc:postgresql://localhost:5432/order_inventory_db}
+spring.datasource.username=${DB_USERNAME:postgres}
+spring.datasource.password=${DB_PASSWORD:postgres123}
+```
+
+By default, the application connects to:
+
+```text
+Database URL: jdbc:postgresql://localhost:5432/order_inventory_db
+Username: postgres
+Password: postgres123
+```
+
+You can keep these default values for local development.
+
+If you want to override them, set environment variables such as:
+
+```properties
+DB_URL=jdbc:postgresql://localhost:5432/order_inventory_db
+DB_USERNAME=postgres
+DB_PASSWORD=your_postgresql_password
 ```
 
 ### 4. Run the Application

@@ -2,6 +2,7 @@ package com.serhat.orderinventory.dto.order;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import lombok.Setter;
 public class CreateOrderItemRequest {
 
     @NotNull(message = "Product id cannot be null")
+    @Positive(message = "Product id must be greater than 0")
     private Long productId;
 
     @NotNull(message = "Quantity cannot be null")
